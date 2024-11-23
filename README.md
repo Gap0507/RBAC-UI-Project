@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+# RBAC-UI-Project
+This project implements a fully functional Role-Based Access Control (RBAC) system with a user-friendly UI and JWT-based authentication. The application is designed for administrators to manage users, roles, and permissions securely and efficiently.
+>>>>>>> 29aad0d9505b6cbd7081d2a958be42baa2e90008
