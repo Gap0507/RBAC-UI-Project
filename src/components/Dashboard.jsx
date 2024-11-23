@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Users, Shield, Activity, AlertCircle, BarChart2, PieChart, Filter, RotateCcw as Refresh, Download,Lock } from 'lucide-react';
+import { Users, Shield, Activity, AlertCircle, BarChart2, PieChart, Filter, RotateCcw as Refresh, Download, Lock } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RechartPieChart, Pie, Cell, Legend } from 'recharts';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -144,16 +144,6 @@ const Dashboard = ({ isDarkMode, onTabChange }) => {
             />
           </button>
         </div>
-        <button
-          className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
-            isDarkMode 
-              ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          }`}
-        >
-          <Download size={18} />
-          <span>Export Report</span>
-        </button>
       </div>
       
       {/* Stats Grid */}
@@ -266,40 +256,42 @@ const Dashboard = ({ isDarkMode, onTabChange }) => {
         </motion.div>
 
         {/* Quick Actions */}
-      <motion.div 
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className={`${cardStyles()} lg:col-span-3`}
-      >
-        <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {quickActionButtons.map((action, index) => (
-            <motion.div 
-              key={action.title} 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.2, delay: index * 0.1 }}
-              className={`
-                w-full cursor-pointer 
-                ${cardStyles(action.color)} 
-                hover:brightness-110 
-                transform transition-all 
-                flex flex-col justify-between
-              `}
-              onClick={action.action}
-            >
-              <div className="flex items-center space-x-4 p-4">
+        <motion.div 
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm lg:col-span-3"
+    >
+      <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {quickActionButtons.map((action, index) => (
+          <motion.div 
+            key={action.title} 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.2, delay: index * 0.1 }}
+            className={`
+              w-full cursor-pointer 
+               ${cardStyles(action.color)} 
+              rounded-lg shadow-sm
+              hover:brightness-110 
+              transform transition-all 
+            `}
+            onClick={action.action}
+          >
+            <div className="flex flex-col p-4">
+              <div className="flex items-center space-x-4 mb-2">
                 <action.icon size={36} className="flex-shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-base truncate">{action.title}</h4>
-                  <p className="text-sm text-gray-500 truncate">{action.description}</p>
-                </div>
+                <h4 className="font-semibold text-base">{action.title}</h4>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+              <p className="text-sm text-gray-500 break-words line-clamp-2 sm:line-clamp-1 md:line-clamp-2">
+                {action.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
       </div>
     </motion.div>
   );
