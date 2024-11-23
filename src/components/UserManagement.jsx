@@ -270,97 +270,101 @@ const UserManagement = ({ isDarkMode }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className={`rounded-xl p-4 shadow-md ${
+      className={`rounded-xl p-4 shadow-md w-full ${
         isDarkMode 
           ? 'bg-gray-800 border-gray-700' 
           : 'bg-white border-gray-200'
       } border transition-all`}
     >
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center space-x-3">
-          <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-            user.status === 'Active'
-              ? 'bg-green-100 text-green-600'
-              : 'bg-red-100 text-red-600'
-          }`}>
-            {user.status === 'Active' ? <CheckCircle size={20} /> : <XCircle size={20} />}
+      <div className="flex flex-col space-y-4">
+        {/* Header Section */}
+        <div className="flex justify-between items-start">
+          <div className="flex items-center space-x-3 min-w-0"> {/* Added min-w-0 */}
+            <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+              user.status === 'Active'
+                ? 'bg-green-100 text-green-600'
+                : 'bg-red-100 text-red-600'
+            }`}>
+              {user.status === 'Active' ? <CheckCircle size={20} /> : <XCircle size={20} />}
+            </div>
+            <div className="min-w-0 flex-1"> {/* Added min-w-0 and flex-1 */}
+              <h3 className="font-bold text-lg truncate">{user.name}</h3>
+              <p className={`text-sm truncate ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                {user.email}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-bold text-lg">{user.name}</h3>
-            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{user.email}</p>
-          </div>
-        </div>
-        <div className="flex space-x-2">
-        <td className="px-6 py-4 whitespace-nowrap flex space-x-2">
-    <button
-      onClick={() => {
-        setCurrentUser(user);
-        setIsModalOpen(true);
-      }}
-      className={`p-1 rounded-lg transition-colors ${
-        isDarkMode
-          ? 'hover:bg-gray-700 text-gray-400 hover:text-gray-200'
-          : 'hover:bg-gray-100 text-gray-600 hover:text-gray-900'
-      }`}
-    >
-      <Edit size={16} />
-    </button>
-    <button
-      onClick={() => {
-        const updatedUsers = users.filter(u => u.id !== user.id);
-        setUsers(updatedUsers);
-        setFilteredUsers(updatedUsers);
-      }}
-      className={`p-1 rounded-lg transition-colors ${
-        isDarkMode
-          ? 'hover:bg-red-900/30 text-red-400 hover:text-red-300'
-          : 'hover:bg-red-100 text-red-600 hover:text-red-700'
-      }`}
-    >
-      <Trash2 size={16} />
-    </button>
-  </td>
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex justify-between items-center">
-          <span className={`text-sm font-medium ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>Role</span>
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-            user.role === 'Admin'
-              ? 'bg-red-100 text-red-800'
-              : user.role === 'Manager'
-              ? 'bg-blue-100 text-blue-800'
-              : 'bg-green-100 text-green-800'
-          }`}>
-            {user.role}
-          </span>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className={`text-sm font-medium ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>Department</span>
-          <span className={`text-sm ${
-            isDarkMode ? 'text-gray-300' : 'text-gray-800'
-          }`}>{user.department}</span>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className={`text-sm font-medium ${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>Activity</span>
-          <div className="w-24 bg-gray-200 rounded-full h-2">
-            <div
-              className={`h-2 rounded-full ${
-                user.activity > 80
-                  ? 'bg-green-500'
-                  : user.activity > 60
-                  ? 'bg-yellow-500'
-                  : 'bg-red-500'
+          <div className="flex-shrink-0 flex space-x-2 ml-2"> {/* Added flex-shrink-0 and ml-2 */}
+            <button
+              onClick={() => {
+                setCurrentUser(user);
+                setIsModalOpen(true);
+              }}
+              className={`p-2 rounded-lg transition-colors ${
+                isDarkMode
+                  ? 'hover:bg-gray-700 text-gray-400 hover:text-gray-200'
+                  : 'hover:bg-gray-100 text-gray-600 hover:text-gray-900'
               }`}
-              style={{ width: `${user.activity}%` }}
-            />
+            >
+              <Edit size={16} />
+            </button>
+            <button
+              onClick={() => {
+                const updatedUsers = users.filter(u => u.id !== user.id);
+                setUsers(updatedUsers);
+                setFilteredUsers(updatedUsers);
+              }}
+              className={`p-2 rounded-lg transition-colors ${
+                isDarkMode
+                  ? 'hover:bg-red-900/30 text-red-400 hover:text-red-300'
+                  : 'hover:bg-red-100 text-red-600 hover:text-red-700'
+              }`}
+            >
+              <Trash2 size={16} />
+            </button>
+          </div>
+        </div>
+  
+        {/* Details Section */}
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <span className={`text-sm font-medium ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>Role</span>
+            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+              user.role === 'Admin'
+                ? 'bg-red-100 text-red-800'
+                : user.role === 'Manager'
+                ? 'bg-blue-100 text-blue-800'
+                : 'bg-green-100 text-green-800'
+            }`}>
+              {user.role}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className={`text-sm font-medium ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>Department</span>
+            <span className={`text-sm truncate max-w-[150px] ${
+              isDarkMode ? 'text-gray-300' : 'text-gray-800'
+            }`}>{user.department}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className={`text-sm font-medium ${
+              isDarkMode ? 'text-gray-400' : 'text-gray-600'
+            }`}>Activity</span>
+            <div className="w-24 bg-gray-200 rounded-full h-2">
+              <div
+                className={`h-2 rounded-full ${
+                  user.activity > 80
+                    ? 'bg-green-500'
+                    : user.activity > 60
+                    ? 'bg-yellow-500'
+                    : 'bg-red-500'
+                }`}
+                style={{ width: `${user.activity}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
