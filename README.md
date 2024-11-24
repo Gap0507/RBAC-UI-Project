@@ -1,75 +1,80 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Role-Based Access Control (RBAC) UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project is a **Role-Based Access Control (RBAC) UI** that allows administrators to manage user roles and permissions efficiently within a web application. It is built using **React**, with state management for handling authentication, roles, and permissions. The app uses **JWT authentication** for securing the admin login and role management functionality. The user interface is developed using **Tailwind CSS**, providing a responsive, modern, and accessible design.
 
-In the project directory, you can run:
+### The Core Concept
 
-### `npm start`
+Role-Based Access Control (RBAC) is a widely used approach for managing and restricting access to system resources based on users' roles. In this application, administrators can:
+- View, add, edit, and delete user roles.
+- Assign and manage permissions for each role.
+- Control access to various system resources by associating permissions with roles.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The goal of this project is to build a UI that mimics a real-world role and permission management system, with easy-to-use features and a modern interface.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+### 1. **Admin Login**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application provides a simple login page for the administrator to access the system. It uses **JWT (JSON Web Token)** for user authentication. After a successful login, the admin is redirected to the admin dashboard to manage roles and permissions.
 
-### `npm run build`
+#### Admin Credentials:
+- **Email**: `admin123@gmail.com`
+- **Password**: `admin123`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. **Role Management**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The main feature of the application is managing user roles. An admin can:
+- **View roles**: See all available roles with details such as role name, description, and the number of users assigned to each role.
+- **Create new roles**: Add new roles to the system using a modal form, including specifying the role’s name, description, and default permissions.
+- **Edit existing roles**: Modify the details of an existing role.
+- **Delete roles**: Remove roles from the system if no longer needed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. **Permission Management**
 
-### `npm run eject`
+Roles can have multiple permissions associated with them. Permissions define the specific actions users with that role can perform. For example, a user with an "Admin" role might have permission to create, edit, and delete user accounts.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Assign Permissions**: The admin can assign specific permissions to roles, such as "Read", "Write", or "Delete", for various system functions.
+- **Permissions Categories**: Permissions are categorized into different groups, e.g., "User Management", "Role Management", "Content Management", etc.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. **Search and Filter**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application allows the admin to search and filter roles by:
+- **Role Name**
+- **Role Description**
+- **Permissions**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Filtering and sorting help the admin find roles quickly in a large system.
 
-## Learn More
+### 5. **Interactive Modal Forms**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For adding or editing roles, the application uses **modals** to provide a user-friendly interface for role and permission management. The modals include:
+- Fields for entering role details (name, description).
+- Checkboxes for assigning permissions to the role.
+- Validation messages to ensure correct input (e.g., role name cannot be empty).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 6. **Dynamic Role Permissions**
 
-### Code Splitting
+Permissions are not static. Admins can dynamically toggle permissions on or off for each role, allowing them to customize the level of access each role has in the system. For example, a "Manager" role may only have access to "View" permissions, while an "Admin" role has access to "Create", "Edit", and "Delete" permissions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 7. **Responsive and User-Friendly UI**
 
-### Analyzing the Bundle Size
+- **Tailwind CSS**: The design of the application is powered by Tailwind CSS, ensuring the app is responsive across devices and displays a clean, modern aesthetic.
+- **Dark Mode / Light Mode**: The UI automatically adapts to the user’s system preference (light or dark mode).
+- **Smooth Transitions**: The use of **Framer Motion** enables smooth animations when elements are added, removed, or changed, providing a polished user experience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 8. **Authentication and Authorization**
 
-### Making a Progressive Web App
+The login page upon successful authentication, the user receives a **JWT token** for subsequent API requests. This token ensures the admin is authorized to access the admin dashboard.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 9. **Mock Backend**
 
-### Advanced Configuration
+While the front-end is fully functional, the backend is mocked. The roles and permissions are managed locally in the application’s state rather than a live database. This mock API mimics real-world API interactions and can be replaced with a real backend later.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 10. **Error Handling and Validation**
 
-### Deployment
+- **Validation**: Role names and descriptions are validated before submission to ensure they meet the required format.
+- **Error Handling**: Basic error handling is implemented to show messages for failed requests or invalid operations.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# RBAC-UI-Project
-This project implements a fully functional Role-Based Access Control (RBAC) system with a user-friendly UI and JWT-based authentication. The application is designed for administrators to manage users, roles, and permissions securely and efficiently.
->>>>>>> 29aad0d9505b6cbd7081d2a958be42baa2e90008
+---
